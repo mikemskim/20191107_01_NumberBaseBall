@@ -3,11 +3,17 @@ package com.tj.a20191107_01_numberbaseball
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.tj.a20191107_01_numberbaseball.adapters.ChatAdapter
+import com.tj.a20191107_01_numberbaseball.datas.ChatData
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
 class MainActivity : BaseActivity() {
 
     var questionNumArray = ArrayList<Int>()
+
+    var chatList = ArrayList<ChatData>()
+    var chatAdapter : ChatAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +45,12 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
     }
 
     override fun setValues() {
+        chatAdapter = ChatAdapter(this, chatList)
+        chatListView.adapter = chatAdapter
     }
-
-
-
 
 }
