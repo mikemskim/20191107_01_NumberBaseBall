@@ -63,6 +63,16 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
+
+        chatList.add(ChatData("${strikeCount}S ${ballCount}B 입니다.", "Computer"))
+
+        if (strikeCount == 3) {
+            chatList.add(ChatData("정답입니다.", "Computer"))
+        }
+
+        chatAdapter?.notifyDataSetChanged()
+
+        chatListView.smoothScrollToPosition(chatList.size - 1)
     }
 
     override fun setupEvents() {
