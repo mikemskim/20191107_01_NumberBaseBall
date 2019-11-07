@@ -11,7 +11,7 @@ import kotlin.random.Random
 class MainActivity : BaseActivity() {
 
     var questionNumArray = ArrayList<Int>()
-
+    var userInputNumArray = ArrayList<Int>()
     var chatList = ArrayList<ChatData>()
     var chatAdapter : ChatAdapter? = null
 
@@ -44,7 +44,36 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    fun checkAnswer() {
+        for (i in 0..2) {
+            for (j in 0..2) {
+
+            }
+        }
+    }
+
     override fun setupEvents() {
+
+        inputBtn.setOnClickListener {
+            var inputNum = inputEdt.text.toString()
+
+            userInputNumArray.add(inputNum.toInt()/100)
+            userInputNumArray.add(inputNum.toInt()/10%10)
+            userInputNumArray.add(inputNum.toInt()%10)
+
+//            var charInputArray = inputNum.toCharArray();
+//            userInputNumArray.add(charInputArray.get(0).toInt())
+//            userInputNumArray.add(charInputArray.get(1).toInt())
+//            userInputNumArray.add(charInputArray.get(2).toInt())
+
+            chatList.add(ChatData(inputNum, "ME"))
+
+
+            chatAdapter?.notifyDataSetChanged()
+            chatListView.smoothScrollToPosition(chatList.size - 1)
+
+            checkAnswer()
+        }
 
     }
 
@@ -52,5 +81,7 @@ class MainActivity : BaseActivity() {
         chatAdapter = ChatAdapter(this, chatList)
         chatListView.adapter = chatAdapter
     }
+
+
 
 }
