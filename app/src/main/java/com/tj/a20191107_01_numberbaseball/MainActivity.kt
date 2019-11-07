@@ -2,6 +2,7 @@ package com.tj.a20191107_01_numberbaseball
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import com.tj.a20191107_01_numberbaseball.adapters.ChatAdapter
 import com.tj.a20191107_01_numberbaseball.datas.ChatData
@@ -64,15 +65,19 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        chatList.add(ChatData("${strikeCount}S ${ballCount}B 입니다.", "Computer"))
 
-        if (strikeCount == 3) {
-            chatList.add(ChatData("정답입니다.", "Computer"))
-        }
 
-        chatAdapter?.notifyDataSetChanged()
+        Handler().postDelayed({
+            chatList.add(ChatData("${strikeCount}S ${ballCount}B 입니다.", "Computer"))
 
-        chatListView.smoothScrollToPosition(chatList.size - 1)
+            if (strikeCount == 3) {
+                chatList.add(ChatData("정답입니다.", "Computer"))
+            }
+
+            chatAdapter?.notifyDataSetChanged()
+            chatListView.smoothScrollToPosition(chatList.size - 1)
+        }, 1000)
+
     }
 
     override fun setupEvents() {
