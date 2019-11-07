@@ -22,9 +22,8 @@ class MainActivity : BaseActivity() {
 
     fun createQuestion() {
 
-
         while(true) {
-            val number = Random.nextInt(1,9)
+            val number = Random.nextInt(1,10) // 1~9 까지 중 랜덤한 숫자
 
             if (!questionNumArray.contains(number)) {
                 questionNumArray.add(number)
@@ -37,7 +36,6 @@ class MainActivity : BaseActivity() {
         for (num in questionNumArray) {
             Log.d("출제숫자",num.toString())
         }
-
     }
 
     override fun setupEvents() {
