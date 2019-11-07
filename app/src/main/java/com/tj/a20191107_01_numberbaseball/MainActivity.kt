@@ -45,9 +45,22 @@ class MainActivity : BaseActivity() {
     }
 
     fun checkAnswer() {
+        for (num in userInputNumArray) {
+            Log.d("입력숫자",num.toString())
+        }
+
+        var strikeCount = 0
+        var ballCount = 0
+
         for (i in 0..2) {
             for (j in 0..2) {
-
+                if (userInputNumArray.get(i) == questionNumArray.get(j)) {
+                    if (i == j) {
+                        strikeCount++
+                    } else {
+                        ballCount++
+                    }
+                }
             }
         }
     }
@@ -57,14 +70,15 @@ class MainActivity : BaseActivity() {
         inputBtn.setOnClickListener {
             var inputNum = inputEdt.text.toString()
 
-            userInputNumArray.add(inputNum.toInt()/100)
-            userInputNumArray.add(inputNum.toInt()/10%10)
-            userInputNumArray.add(inputNum.toInt()%10)
+            userInputNumArray.clear()
+//            userInputNumArray.add(inputNum.toInt()/100)
+//            userInputNumArray.add(inputNum.toInt()/10%10)
+//            userInputNumArray.add(inputNum.toInt()%10)
 
-//            var charInputArray = inputNum.toCharArray();
-//            userInputNumArray.add(charInputArray.get(0).toInt())
-//            userInputNumArray.add(charInputArray.get(1).toInt())
-//            userInputNumArray.add(charInputArray.get(2).toInt())
+            var charInputArray = inputNum.toCharArray();
+            userInputNumArray.add(charInputArray.get(0).toString().toInt())
+            userInputNumArray.add(charInputArray.get(1).toString().toInt())
+            userInputNumArray.add(charInputArray.get(2).toString().toInt())
 
             chatList.add(ChatData(inputNum, "ME"))
 
